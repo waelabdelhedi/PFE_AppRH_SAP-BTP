@@ -1,0 +1,9 @@
+projection;
+//strict;
+
+define behavior for ZC_CONGEE alias Conge
+{
+  //use create;
+  use update;
+  use delete;
+}

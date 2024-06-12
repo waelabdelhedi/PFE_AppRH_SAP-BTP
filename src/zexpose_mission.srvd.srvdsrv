@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition for Mission'
+define service ZEXPOSE_MISSION {
+  expose ZC_MISSION            as Mission;
+  expose ZC_CONSULTANT_MISSION as Consultant;
+  expose ZI_USER_Stagiaire;
+}

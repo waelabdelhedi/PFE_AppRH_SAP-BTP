@@ -1,0 +1,5 @@
+CLASS zbp_i_formation_form DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_formation_form.
+ENDCLASS.
+
+CLASS zbp_i_formation_form IMPLEMENTATION.
+ENDCLASS.

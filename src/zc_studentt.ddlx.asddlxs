@@ -1,0 +1,48 @@
+@Metadata.layer: #PARTNER
+@UI: {
+     headerInfo: { typeName: 'Les demandes emplois',
+                     typeNamePlural: 'Les demandes emplois',
+                     title: {  type: #STANDARD, label: 'Demande emploi', value: 'postesouhaite' }
+                     }
+                     }
+annotate view ZC_STUDENTT
+    with 
+{
+     @UI.facet: [ {  id : 'Student',
+            purpose : #STANDARD,
+            type: #IDENTIFICATION_REFERENCE,
+            label: 'Demande Emploi',
+            position: 10
+            },
+            /*{ id : 'AcademicResult',
+              purpose : #STANDARD,
+              type: #LINEITEM_REFERENCE,
+              label: 'Academic Result Details',
+              position: 20,
+              targetElement: '_academicres'     },*/
+              { id : 'StudentData',
+              purpose : #STANDARD,
+              type: #LINEITEM_REFERENCE,
+              label: 'CV',
+              position: 30,
+              targetElement: '_CV'     }]
+              
+              
+  @UI.identification: [ { position: 10,  label : 'Uuid'   }]
+  @UI.hidden: true
+  uuid;         
+  @UI.identification: [ { position: 20, label: 'RéferenceDemandeEmploi' }]   
+  id;
+      @UI : { lineItem : [ { position : 30, importance: #HIGH} ],
+      identification: [ { position: 30,  label : 'Poste Souhaite'   }]}
+      postesouhaite;
+      @UI : { lineItem : [ { position : 40, importance: #HIGH} ],
+      identification: [ { position: 40,  label : 'Specialisation'   }]}
+      specialisation;
+      @UI : { lineItem : [ { position : 50, importance: #HIGH} ],
+      identification: [ { position: 50,  label : 'Experience'   }]}
+      experience;
+      @UI : { lineItem : [ { position : 60, importance: #HIGH} ],
+      identification: [ { position: 60,  label : 'Disponibilite'   }]}
+      disponibilite;
+}

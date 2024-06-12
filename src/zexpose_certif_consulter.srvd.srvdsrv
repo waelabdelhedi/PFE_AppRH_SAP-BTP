@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Certif (Consulter)'
+define service ZEXPOSE_CERTIF_CONSULTER {
+  expose ZC_CERTIF_CONSULTER as Certif;
+}

@@ -1,0 +1,15 @@
+managed implementation in class zbp_i_formation_consulter unique;
+//strict ( 2 );
+
+define behavior for ZI_FORMATION_Consulter alias Formation
+persistent table zpfe_formation
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+field ( numbering : managed, readonly) Uuid;
+field (readonly) FormationId,last_changed_at, last_changed_by, created_at, created_by;
+  //create;
+  //update;
+  //delete;
+}

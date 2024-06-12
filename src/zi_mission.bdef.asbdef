@@ -1,0 +1,49 @@
+managed implementation in class zbp_i_mission unique;
+strict;
+with draft;
+
+define behavior for ZI_MISSION alias Mission
+persistent table ZPFE_MISSION
+draft table ZPFE_MISS_draft
+lock master total etag  locallastchangedat
+authorization master ( instance )
+etag master lastchangedat
+{
+  field ( numbering : managed, readonly) uuid;
+  field (readonly) missionid,last_changed_at, last_changed_by, created_at, created_by;
+  create;
+  update;
+  delete;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  determination CalculateMissionKey on modify { create; }
+  validation validateTitre on save { field titre; create; }
+  validation validateDescription on save { field description; create; }
+  validation validateDates on save { field datedebut, datefin; create; }
+
+  association _Consultant { create;  with draft; }
+
+}
+define behavior for ZI_CONSULTANT_MISSION alias Consultant
+implementation in class zbp_i_consultant_mission unique
+persistent table zpfe_consultant
+draft table zpfe_consMis_dr
+lock dependent by _mission
+authorization dependent by _mission
+etag master lastchangedat
+{
+  update;
+  delete;
+  field ( numbering : managed, readonly ) uuid;
+  field ( readonly ) keyparent;
+
+  validation validateNom on save { field nom; create; }
+  validation validatePrenom on save { field prenom; create; }
+  validation validateEmail on save { field email; create; }
+  validation validateTauxJournalier on save { field tauxjournalier; create; }
+
+  association _mission { with draft;}
+}

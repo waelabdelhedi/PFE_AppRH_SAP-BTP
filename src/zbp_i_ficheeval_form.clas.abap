@@ -1,0 +1,5 @@
+CLASS zbp_i_ficheeval_form DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_ficheeval_form.
+ENDCLASS.
+
+CLASS zbp_i_ficheeval_form IMPLEMENTATION.
+ENDCLASS.

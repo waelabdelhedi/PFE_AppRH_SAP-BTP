@@ -1,0 +1,4 @@
+@EndUserText.label: 'ZEXPOSE_FicheEval_Form'
+define service ZEXPOSE_FicheEval_Form {
+  expose ZC_FicheEval_Form;
+}

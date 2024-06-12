@@ -1,0 +1,26 @@
+projection;
+strict;
+use draft;
+
+define behavior for ZC_STUDENTT  alias DemandeEmploi
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _CV { create; with draft; }
+}
+
+define behavior for ZC_ATTACHMENT_V2 alias CV
+{
+  use update;
+  use delete;
+
+  use association _DemandeEmploi { with draft; }
+}

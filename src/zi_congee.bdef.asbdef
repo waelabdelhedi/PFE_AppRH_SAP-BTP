@@ -1,0 +1,18 @@
+managed implementation in class zbp_i_congee unique;
+//strict ;
+
+define behavior for ZI_CONGEE alias Conge
+persistent table zpfe_congee
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  field ( numbering : managed, readonly) mykey;
+  field (readonly) congeid,last_changed_at, last_changed_by, created_at, created_by;
+  //create;
+  update;
+  delete;
+  determination CalculateCongeKey on modify { create; }
+  validation validateType on save { field type; create; }
+  validation validateDates on save { field datedebut, datefin; create; }
+}

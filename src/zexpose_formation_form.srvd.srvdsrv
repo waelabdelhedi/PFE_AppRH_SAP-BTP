@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Formu Formation'
+define service ZEXPOSE_FORMATION_Form {
+  expose ZC_FORMATION_Form;
+}

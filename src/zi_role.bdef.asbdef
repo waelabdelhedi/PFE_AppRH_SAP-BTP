@@ -1,0 +1,25 @@
+managed implementation in class zbp_i_role unique;
+//strict ( 2 );
+
+define behavior for ZI_ROLE alias Role
+persistent table zpfe_role
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  field ( numbering : managed, readonly) uuid;
+  field (readonly) roleid,last_changed_at, last_changed_by, created_at, created_by;
+  create;
+  update;
+  delete;
+
+  determination CalculateRoleKey on modify { create; }
+  validation validateNom on save { field nom; create; }
+  validation validatePoste on save { field poste; create; }
+  validation validateRole on save { field nomrole; create; }
+  validation validateNiveauAcces on save { field niveauacces; create; }
+
+
+
+
+}

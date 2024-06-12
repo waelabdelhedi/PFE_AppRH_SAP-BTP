@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Conge (Consulter)'
+define service ZEXPOSE_CONGE_CONSULTER {
+  expose ZC_CONGEE_CONSULTER as Conge;
+}

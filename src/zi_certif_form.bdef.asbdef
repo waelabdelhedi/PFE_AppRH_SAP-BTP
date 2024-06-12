@@ -1,0 +1,38 @@
+managed implementation in class zbp_i_certif_form unique;
+//strict ( 2 );
+//with draft;
+
+define behavior for ZI_CERTIF_FORM //alias <alias_name>
+persistent table zpfe_certif
+//draft table zpfe_certif_d
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  field ( numbering : managed, readonly ) uuidcertif;
+  field ( readonly ) certifid, last_changed_at, last_changed_by, created_at, created_by;
+  create;
+  update;
+
+  determination CalculateCertifKey on modify { create; }
+  validation validateNom on save { field nom; create; }
+  validation validateOrganisme on save { field organisme; create; }
+  validation validateDescription on save { field description; create; }
+  validation validateDates on save { field dateobtention, dateexpiration; create; }
+  validation validateliencertificat on save { field liencertificat; create; }
+
+
+  mapping for zpfe_certif
+    {
+      UuidCertif       = uuidcertif;
+      CertifId         = certifid;
+      Nom              = nom;
+      Organisme        = organisme;
+      DateObtention    = dateobtention;
+      DateExpiration   = dateexpiration;
+      Description      = description;
+      LienCertificat   = liencertificat;
+      created_at       = created_at;
+      created_by       = created_by;
+    }
+}

@@ -1,0 +1,36 @@
+managed implementation in class zbp_i_formation_form unique;
+
+
+define behavior for ZI_FORMATION_Form //alias FormulaireFormation
+persistent table zpfe_formation
+lock master
+{
+
+field ( numbering : managed, readonly) Uuid;
+field (readonly) FormationId,last_changed_at, last_changed_by, created_at, created_by;
+
+  create;
+  update;
+  //delete;
+
+//  mapping for zpfe_formuforma
+//    {
+//      Uuid             = uuid;
+//      FormationId      = formationid;
+//      Sujet            = sujet;
+//      Formateur        = formateur;
+//      Modalite         = modalite;
+//      DateDebut        = datedebut;
+//      DateFin          = datefin;
+//      LocalLastChanged = local_last_changed;
+//      LastChanged = last_changed;
+//    }
+
+
+    determination CalculateFormationKey on modify { create; }
+    validation validateSujet on save { field sujet; create; }
+    validation validateFormateur on save { field formateur; create; }
+    validation validateModalite on save { field modalite; create; }
+    validation validateDates on save { field datedebut, datefin; create; }
+
+}

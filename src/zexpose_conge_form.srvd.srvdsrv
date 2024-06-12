@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Formulaire Conge'
+define service ZEXPOSE_CONGE_Form {
+  expose ZC_CONGEE_FORM;
+}

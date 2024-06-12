@@ -1,0 +1,5 @@
+@EndUserText.label: 'STUDENT'
+define service ZEXPOSE_STUDENTT {
+  expose ZC_STUDENTT      as DemandeEmploi;
+  expose ZC_ATTACHMENT_V2 as CV;
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Congé'
+define service ZEXPOSE_CONGEE {
+  expose ZC_CONGEE as Conge;
+}

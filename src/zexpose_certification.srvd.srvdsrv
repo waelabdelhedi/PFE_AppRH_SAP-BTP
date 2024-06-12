@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Certification'
+define service ZEXPOSE_CERTIFICATION {
+  expose ZC_CERTIF as Certification;
+}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Note Frais (Form)'
+define service ZEXPOSE_NoteFrais {
+  expose ZC_NoteFrais as Notefrais;
+  expose ZC_docnfrais as Docnotefrais;
+}

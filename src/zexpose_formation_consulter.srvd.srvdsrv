@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Formation (Consulter)'
+define service ZEXPOSE_FORMATION_CONSULTER {
+  expose ZC_FORMATION_CONSULTER as Formation;
+}

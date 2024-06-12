@@ -1,0 +1,50 @@
+projection;
+strict;
+use draft;
+
+define behavior for ZC_USER_Stagiaire alias User_S
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+   use  association _Stagiaire { create;  with draft; }
+   use  association _Admin { create;  with draft; }
+   use  association _Consultant { create;  with draft; }
+
+
+}
+define behavior for ZC_Stagiaire alias Stagiaire
+{
+  use update;
+  use delete;
+
+  use association _userS { with draft; }
+}
+define behavior for ZC_ADMIN alias Admin
+{
+  use update;
+  use delete;
+
+  use association _userS { with draft; }
+}
+define behavior for ZC_Consultant alias Consultant
+{
+  use update;
+  use delete;
+
+  use association _userS { with draft; }
+}
+/*define behavior for ZC_Role alias Role
+{
+  use update;
+  use delete;
+
+  use association _userS { with draft; }
+}*/

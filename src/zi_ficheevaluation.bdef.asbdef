@@ -1,0 +1,15 @@
+managed implementation in class zbp_i_ficheevaluation unique;
+//strict ( 2 );
+
+define behavior for ZI_FicheEvaluation //alias <alias_name>
+persistent table zpfe_evaluation
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+//  create;
+//  update;
+//  delete;
+  field ( numbering : managed, readonly) Uuid;
+  field (readonly) FicheEvaluationId,last_changed_at, last_changed_by, created_at, created_by;
+}

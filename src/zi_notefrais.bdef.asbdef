@@ -1,0 +1,46 @@
+managed implementation in class zbp_i_notefrais unique;
+strict;
+with draft;
+define behavior for ZI_NoteFrais alias Notefrais
+persistent table zpfe_nfrais
+draft table zpfe_nfrais_dr
+lock master total etag  Locallastchangedat
+authorization master ( instance )
+etag master Lastchangedat
+{
+  create;
+  update;
+  delete;
+  field ( numbering : managed, readonly ) uuid;
+  field (readonly) notefraisid, Created_at, created_by;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  determination CalculateNoteFraisKey on modify { create; }
+  validation validateMotif on save { field Motif; create; }
+  validation validateMontant on save { field Montant; create; }
+    association _docnfrais { create;  with draft; }
+}
+
+define behavior for ZI_docnfrais alias Docnotefrais
+implementation in class zbp_i_docnfrais unique
+persistent table zpfe_docnfrais
+draft table zpfe_docnfrais_d
+lock dependent by _notefrais
+authorization dependent by _notefrais
+etag master lastchangedat
+{
+
+  validation validateAttachment on save { field attachment; create; }
+
+  update;
+  delete;
+  field ( numbering : managed, readonly) uuid;
+  field ( readonly ) keyparent;
+  //field ( readonly ) id_attachment;
+  association _notefrais { with draft; }
+  }

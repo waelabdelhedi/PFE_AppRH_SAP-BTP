@@ -1,0 +1,5 @@
+CLASS zbp_i_ficheevaluation DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_ficheevaluation.
+ENDCLASS.
+
+CLASS zbp_i_ficheevaluation IMPLEMENTATION.
+ENDCLASS.

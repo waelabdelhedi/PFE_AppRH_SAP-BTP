@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Note Frais'
+define service ZUI_LT_NOTEFRAIS {
+  expose ZC_LT_NOTEFRAIS as Notefrais;
+  expose ZC_docnfrais_M  as Docnotefrais;
+}

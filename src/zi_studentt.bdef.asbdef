@@ -1,0 +1,50 @@
+managed implementation in class zbp_i_studentt unique;
+strict;
+with draft;
+
+define behavior for ZI_STUDENTT alias DemandeEmploi
+persistent table zpfe_dememp
+draft table zpfe_dememp_dr
+lock master total etag  Locallastchangedat
+authorization master ( instance )
+etag master Lastchangedat
+{
+field ( numbering : managed, readonly) uuid;
+field (readonly) id;
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  determination calculstudent_id on modify { create; }
+  validation validatePostesouhaite on save { field Postesouhaite; create; }
+  validation validateExperience on save { field Experience; create; }
+  validation validateSpecialisation on save { field Specialisation; create; }
+  validation validateDateDispo on save { field Disponibilite; create; }
+
+  association _CV { create;  with draft; }
+}
+
+define behavior for ZI_ATTACHMENT_V2 alias CV
+implementation in class zbp_id_attachment unique
+persistent table zpfe_attachment
+draft table zpfe_attch_dt
+lock dependent by _DemandeEmploi
+authorization dependent by _DemandeEmploi
+etag master lastchangedat
+{
+
+//determination calculattachment_id on modify { create; }
+  validation validateAttachment on save { field attachment; create; }
+
+  update;
+  delete;
+  field ( numbering : managed, readonly) uuid;
+  field ( readonly ) keyparent;
+ // field ( readonly ) id_attachment;
+  association _DemandeEmploi { with draft; }
+}

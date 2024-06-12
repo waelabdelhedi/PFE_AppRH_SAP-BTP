@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service Definition for User_Stagiaire'
+define service ZEXPOSE_USER_Stagiaire {
+  expose ZC_USER_Stagiaire as User_S;
+  expose ZC_STAGIAIRE      as Stagiaire;
+  expose ZC_ADMIN          as Admin;
+  expose ZC_CONSULTANT     as Consultant;
+}

@@ -1,0 +1,41 @@
+@Metadata.layer: #PARTNER
+@UI: {
+     headerInfo: { typeName: 'Formulaire demande de note de frais',
+                     typeNamePlural: 'Formulaire demande de note de frais',
+                     title: {  type: #STANDARD, label: 'Formulaire demande de note de frais', value: 'motif' }
+                     }
+                     }
+annotate entity ZC_NoteFrais with
+{
+  @UI.facet: [ {  id : 'Notefrais',
+         purpose : #STANDARD,
+         type: #IDENTIFICATION_REFERENCE,
+         label: 'Formulaire demande de note de frais',
+         position: 10
+         },
+         { id : 'StudentData',
+           purpose : #STANDARD,
+           type: #LINEITEM_REFERENCE,
+           label: 'Document Details',
+           position: 20,
+           targetElement: '_docnfrais'     }
+  ]
+
+  @UI.identification: [ { position: 10,  label : 'Uuid'   }]
+  @UI.hidden: true
+  uuid;
+  @UI : { lineItem : [ { position : 20, importance: #HIGH} ],
+  identification: [ { position: 20,  label : 'NoteFraisId'   }]}
+  @UI.hidden: true
+  notefraisid;
+  @UI.identification: [ { position: 30,  label : 'Motif'   }]
+  motif;
+  @UI.identification: [ { position: 40,  label : 'Montant'   }]
+  montant;
+  @UI.identification: [ { position: 50, label: 'Created_at' } ]
+  created_at;
+  @UI.identification: [ { position: 60, label: 'Created_by' } ]
+  created_by;
+
+
+}

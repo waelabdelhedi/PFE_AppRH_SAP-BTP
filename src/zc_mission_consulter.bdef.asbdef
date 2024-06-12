@@ -1,0 +1,11 @@
+projection;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZC_MISSION_CONSULTER alias Mission
+{
+use association _Consultant {}
+}
+define behavior for ZC_CONSULTANTMISSION_CONSULTER alias Consultant
+{
+  use association _mission {}
+}

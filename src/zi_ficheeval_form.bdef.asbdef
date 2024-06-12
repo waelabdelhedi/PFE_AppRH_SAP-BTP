@@ -1,0 +1,31 @@
+managed implementation in class zbp_i_ficheeval_form unique;
+//strict ( 2 );
+
+define behavior for ZI_FicheEval_Form //alias <alias_name>
+persistent table zpfe_evaluation
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+field ( numbering : managed, readonly) Uuid;
+field (readonly) FicheEvaluationId,last_changed_at, last_changed_by, created_at, created_by;
+
+  create;
+  update;
+
+  determination CalculateFicheEvaluationKey on modify { create; }
+  validation validateSujetFormation on save { field SujetFormation; create; }
+  validation validateContenu on save { field contenu; create; }
+  validation validateRapport on save { field rapport_theorie_pratique; create; }
+  validation validateDuree on save { field duree; create; }
+  validation validateRythme on save { field rythme; create; }
+  validation validateSupportPedagogique on save { field support_pedagogique; create; }
+  validation validateLogistique on save { field Logistique; create; }
+  validation validateClarteDuCours on save { field clarte_du_cours; create; }
+  validation validateMaitriseDuSujet on save { field maitrise_du_sujet; create; }
+  validation validateDisponibilite on save { field disponibilite; create; }
+  validation validateMethodePedagogique on save { field methode_pedagogique; create; }
+  validation validateUtilite on save { field utilite_en_travail; create; }
+  validation validateAmeliorationPersoEtPro on save { field amelioration; create; }
+
+}

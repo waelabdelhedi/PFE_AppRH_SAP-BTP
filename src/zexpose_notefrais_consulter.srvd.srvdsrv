@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Note Frais (Consulter)'
+define service ZEXPOSE_NoteFrais_CONSULTER {
+  expose ZC_LT_NOTEFRAIS_CONSULTER as NoteFrais;
+  expose ZC_docnfrais_consulter    as Docnotefrais;
+}

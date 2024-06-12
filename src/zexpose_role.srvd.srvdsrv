@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Role'
+define service ZEXPOSE_ROLE {
+  expose ZC_ROLE as Role;
+}

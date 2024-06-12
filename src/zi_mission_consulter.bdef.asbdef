@@ -1,0 +1,34 @@
+managed implementation in class zbp_i_mission_consulter unique;
+//strict ( 2 );
+
+define behavior for ZI_MISSION_CONSULTER alias Mission
+persistent table zpfe_mission
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+ field ( numbering : managed, readonly) uuid;
+  field (readonly) missionid,last_changed_at, last_changed_by, created_at, created_by;
+//  create;
+//  update;
+//  delete;
+association _Consultant { }
+}
+define behavior for ZI_CONSULTANTMISSION_CONSULTER alias Consultant
+implementation in class zbp_i_cons_mission_consulter unique
+persistent table zpfe_consultant
+//draft table zpfe_consMis_dr
+lock dependent by _mission
+//authorization dependent by _mission
+//etag master lastchangedat
+{
+
+
+  field ( numbering : managed, readonly ) uuid;
+  field ( readonly ) keyparent;
+
+
+
+
+  association _mission { }
+}

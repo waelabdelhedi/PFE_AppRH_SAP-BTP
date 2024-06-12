@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for Formulaire Certif'
+define service ZEXPOSE_CERTIF_Form {
+  expose ZC_CERTIF_FORM;
+}

@@ -1,0 +1,117 @@
+managed implementation in class zbp_i_user_stagiaire unique;
+strict;
+with draft;
+
+define behavior for ZI_USER_Stagiaire alias User_S
+persistent table zpfe_user_s
+draft table zpfe_user_s_drft
+lock master total etag locallastchangedat
+authorization master ( instance )
+etag master lastchangedat
+{
+  field ( numbering : managed, readonly ) uuid;
+  field ( readonly ) userid, last_changed_at, last_changed_by, created_at, created_by;
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  association _Stagiaire { create; with draft; }
+  association _Admin { create; with draft; }
+  association _Consultant { create; with draft; }
+
+  validation validateNom on save { field nom; create; }
+  validation validatePrenom on save { field prenom; create; }
+  validation validateAdresse on save { field adresse; create; }
+  validation validateTelephone on save { field telephone; create; }
+  validation validateEmail on save { field email; create; }
+  validation validateDateNaissance on save { field datenaissance; create; }
+  determination CalculateUserKey on modify { create; }
+
+
+
+
+}
+define behavior for ZI_STAGIAIRE alias Stagiaire
+implementation in class zbp_i_stagiaire unique
+persistent table zpfe_stagiaire
+draft table zpfe_stag_drft
+lock dependent by _userS
+authorization dependent by _userS
+etag master lastchangedat
+{
+
+
+
+  update;
+  delete;
+  field ( numbering : managed, readonly ) uuid;
+  field ( readonly ) keyparent;
+
+  association _userS { with draft; }
+
+  validation validateDates on save { field datedebut, datefin; create; }
+  validation validateDuree on save { field duree; create; }
+  validation validateCv on save { field cv; create; }
+  validation validateEcole on save { field ecole; create; }
+  validation validateDepartement on save { field departement; create; }
+
+
+
+
+}
+define behavior for ZI_ADMIN alias Admin
+implementation in class zbp_i_admin unique
+persistent table zpfe_admin
+draft table zpfe_admin_draft
+lock dependent by _userS
+authorization dependent by _userS
+etag master lastchangedat
+{
+
+
+
+  update;
+  delete;
+  field ( numbering : managed, readonly ) uuid;
+  field ( readonly ) keyparent;
+
+  association _userS { with draft; }
+
+  validation validateDateDebut on save { field datedebut; create; }
+  validation validateCv on save { field cv; create; }
+  validation validatePoste on save { field poste; create; }
+
+}
+define behavior for ZI_CONSULTANT alias Consultant
+implementation in class zbp_i_consultant unique
+persistent table zpfe_consultant
+draft table zpfe_cons_draft
+lock dependent by _userS
+authorization dependent by _userS
+etag master lastchangedat
+{
+
+
+
+  update;
+  delete;
+  field ( numbering : managed, readonly ) uuid;
+  field ( readonly ) keyparent;
+
+  validation validateDateDebut on save { field datedebut; create; }
+  validation validateCv on save { field cv; create; }
+  validation validatePoste on save { field poste; create; }
+  validation validateNiveau on save { field niveau; create; }
+  validation validateDepartement on save { field departement; create; }
+  validation validateMission on save { field mission; create; }
+
+
+
+  association _userS { with draft; }
+}

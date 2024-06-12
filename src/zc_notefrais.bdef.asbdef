@@ -1,0 +1,25 @@
+projection;
+strict;
+use draft;
+
+define behavior for ZC_NoteFrais alias Notefrais
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+  use association _docnfrais { create; with draft; }
+}
+
+define behavior for ZC_docnfrais alias Docnotefrais
+{
+  use update;
+  use delete;
+
+  use association _notefrais { with draft; }
+}
